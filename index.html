@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A3678">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="Capacitación Virtual: Herramientas Digitales Públicas para Estudiantes de Gestión Pública y Desarrollo Social">
+  <title>GOB DATA 360 - Capacitación Virtual</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="assets/gobdata360-app-icon.svg">
+  <link rel="apple-touch-icon" href="assets/gobdata360-app-icon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="app">
+    <div id="welcome-screen" class="screen active">
+      <div class="welcome-container">
+        <div class="welcome-content">
+          <div class="logo-section">
+            <div class="logo">
+              <i class="fas fa-university"></i>
+            </div>
+            <h1>Bienvenidos a GOB DATA</h1>
+            <p>Capacitación Virtual: Herramientas Digitales Públicas para Estudiantes de Gestión Pública y Desarrollo Social</p>
+          </div>
+          <div class="welcome-buttons">
+            <button class="btn btn-primary" onclick="showScreen('login-screen')">
+              <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+            </button>
+            <button class="btn btn-secondary" onclick="showScreen('register-screen')">
+              <i class="fas fa-user-plus"></i> Registrarse
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="login-screen" class="screen">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <i class="fas fa-arrow-left back-btn" onclick="showScreen('welcome-screen')"></i>
+            <h2>Iniciar Sesión</h2>
+          </div>
+          <form id="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label>Correo Electrónico</label>
+              <input type="email" id="login-email" required placeholder="correo@ejemplo.com">
+            </div>
+            <div class="form-group">
+              <label>Contraseña</label>
+              <input type="password" id="login-password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+            </button>
+          </form>
+          <p class="auth-footer">
+            ¿No tienes una cuenta? <a href="#" onclick="showScreen('register-screen')">Registrarse</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="register-screen" class="screen">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <i class="fas fa-arrow-left back-btn" onclick="showScreen('welcome-screen')"></i>
+            <h2>Crear Cuenta</h2>
+          </div>
+          <div class="register-intro">
+            <img src="assets/gobdata360-logo.svg" alt="Logo GOBDATA 360">
+            <p>Capacitación Virtual: Herramientas Digitales Públicas para Estudiantes de Gestión Pública y Desarrollo Social</p>
+          </div>
+          <form id="register-form" onsubmit="handleRegister(event)">
+            <div class="form-group">
+              <label>Nombres</label>
+              <input type="text" id="register-name" required placeholder="Ingresa tus nombres">
+            </div>
+            <div class="form-group">
+              <label>Apellidos</label>
+              <input type="text" id="register-lastname" required placeholder="Ingresa tus apellidos">
+            </div>
+            <div class="form-group">
+              <label>Correo Electrónico</label>
+              <input type="email" id="register-email" required placeholder="correo@ejemplo.com">
+            </div>
+            <div class="form-group">
+              <label>Contraseña</label>
+              <input type="password" id="register-password" required placeholder="••••••••" minlength="6">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fas fa-user-plus"></i> Registrarse
+            </button>
+          </form>
+          <p class="auth-footer">
+            ¿Ya tienes una cuenta? <a href="#" onclick="showScreen('login-screen')">Iniciar Sesión</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="dashboard-screen" class="screen">
+      <div class="dashboard">
+        <header class="dashboard-header">
+          <div class="header-left">
+            <div class="header-logo">
+              <img src="assets/gobdata360-logo.svg" alt="Logo GOBDATA 360">
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="live-classes-section" onclick="showLiveClassesPanel()">
+              <i class="fas fa-video"></i>
+              <span>ENTRAR A CLASES EN VIVO</span>
+            </div>
+          </div>
+          <div class="header-right">
+            <button class="theme-toggle" onclick="toggleTheme()">
+              <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            <div class="notification-bell" onclick="showNotifications()">
+              <i class="fas fa-bell"></i>
+              <span class="notification-count" id="notification-count">0</span>
+            </div>
+            <div class="user-menu" id="user-menu">
+              <div class="user-avatar" id="user-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu">
+                <a href="#" onclick="showProfile()">
+                  <i class="fas fa-user"></i> Perfil
+                </a>
+                <a href="#" onclick="showEvaluations()">
+                  <i class="fas fa-clipboard-check"></i> Evaluaciones
+                </a>
+                <a href="#" onclick="showSurveys()">
+                  <i class="fas fa-poll"></i> Encuesta de Satisfacción
+                </a>
+                <a href="#" id="analytics-link" style="display: none;" onclick="showAnalytics()">
+                  <i class="fas fa-chart-line"></i> Estadísticas
+                </a>
+                <hr>
+                <a href="#" onclick="handleLogout()">
+                  <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="dashboard-main">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Buscar módulos, recursos, videos..." oninput="handleSearch(this.value)">
+          </div>
+
+          <div class="modules-section" id="modules-section">
+            <h2>Módulos de Aprendizaje</h2>
+            <div class="modules-grid" id="modules-grid">
+            </div>
+          </div>
+
+          <div class="live-classes-preview" id="live-classes-preview">
+            <h2>Próximas Clases en Vivo</h2>
+            <div class="live-classes-list" id="live-classes-list">
+            </div>
+          </div>
+        </main>
+
+        <div id="profile-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Mi Perfil</h3>
+              <button class="close-modal" onclick="closeModal('profile-modal')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="profile-form" onsubmit="handleUpdateProfile(event)">
+                <div class="form-group">
+                  <label>Nombres</label>
+                  <input type="text" id="profile-name" required>
+                </div>
+                <div class="form-group">
+                  <label>Apellidos</label>
+                  <input type="text" id="profile-lastname" required>
+                </div>
+                <div class="form-group">
+                  <label>Correo Electrónico</label>
+                  <input type="email" id="profile-email" readonly>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div id="module-modal" class="modal">
+          <div class="modal-content large-modal">
+            <div class="modal-header">
+              <h3 id="module-modal-title">Módulo</h3>
+              <button class="close-modal" onclick="closeModal('module-modal')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body" id="module-modal-body">
+            </div>
+          </div>
+        </div>
+
+        <div id="live-classes-modal" class="modal">
+          <div class="modal-content large-modal">
+            <div class="modal-header">
+              <h3>Entrar a Clases en Vivo</h3>
+              <button class="close-modal" onclick="closeModal('live-classes-modal')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body" id="live-classes-modal-body">
+            </div>
+          </div>
+        </div>
+
+        <div id="notifications-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Notificaciones</h3>
+              <button class="close-modal" onclick="closeModal('notifications-modal')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body" id="notifications-list">
+            </div>
+          </div>
+        </div>
+
+        <div id="evaluations-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Evaluaciones</h3>
+              <button class="close-modal" onclick="closeModal('evaluations-modal')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body" id="evaluations-list">
+            </div>
+          </div>
+        </div>
+
+        <div id="surveys-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Encuesta de Satisfacción</h3>
+              <button class="close-modal" onclick="closeModal('surveys-modal')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body" id="surveys-body">
+            </div>
+          </div>
+        </div>
+
+        <div id="analytics-modal" class="modal">
+          <div class="modal-content large-modal">
+            <div class="modal-header">
+              <h3>Estadísticas y Análisis</h3>
+              <button class="close-modal" onclick="closeModal('analytics-modal')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body" id="analytics-body">
+            </div>
+          </div>
+        </div>
+
+        <div id="certificate-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>¡Felicidades!</h3>
+              <button class="close-modal" onclick="closeModal('certificate-modal')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="certificate-content">
+                <i class="fas fa-trophy"></i>
+                <p>Has completado todos los módulos y alcanzado el 100% de progreso.</p>
+                <p>¿Deseas solicitar tu certificado?</p>
+                <div class="certificate-buttons">
+                  <a href="https://wa.me/51930334453" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-whatsapp"></i> Sí, solicitar certificado
+                  </a>
+                  <button class="btn btn-secondary" onclick="closeModal('certificate-modal')">
+                    Más tarde
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js?v=install-pwa-v1"></script>
+</body>
+</html>

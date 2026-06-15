@@ -1,0 +1,20 @@
+{
+  "name": "GOB DATA 360",
+  "short_name": "GOBDATA360",
+  "description": "Capacitación Virtual: Herramientas Digitales Públicas para Estudiantes de Gestión Pública y Desarrollo Social",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0A3678",
+  "icons": [
+    {
+      "src": "assets/gobdata360-app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
