@@ -1,0 +1,15 @@
+{
+  "name": "gobdata360",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Arranque raíz para despliegue de GOB DATA 360",
+  "scripts": {
+    "postinstall": "npm install --prefix backend",
+    "start": "npm start --prefix backend",
+    "dev": "npm run dev --prefix backend",
+    "seed": "npm run seed --prefix backend"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: gobdata360
+    env: node
+    plan: free
+    autoDeploy: true
+    buildCommand: npm install
+    startCommand: npm start
+    disk:
+      name: gobdata360-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MAX_FILE_SIZE
+        value: 104857600
+      - key: DB_PATH
+        value: /var/data/gobdata360.db
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
